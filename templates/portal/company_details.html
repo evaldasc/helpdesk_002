@@ -1,0 +1,20 @@
+{% extends "portal/portal.html" %}
+
+{% block title %}
+Company details
+{% endblock %}
+
+{% block content %}
+    <h2>{{ company.name }} details:</h2>
+    Name: {{ company.name }}<br />
+    Active: {{ company.isActive }}<br />
+    Email: {{ company.email }}<br />
+    Administrtor: {{ company.administrator }}<br />
+    {% for branch in branches %}
+        <h3>{{ branch.branchName }}</h3><br />
+        Adress: {{ branch.adress }}<br />
+        Phone: {{ branch.phone }}<br />
+        IP: {{ branch.IP }}<br />
+    {% endfor %}
+    
+{% endblock %}
