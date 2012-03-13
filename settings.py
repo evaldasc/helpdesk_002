@@ -147,3 +147,4 @@ LOGGING = {
 }
 
 LOGIN_URL = '/login/'
+AUTH_PROFILE_MODULE = 'imones.UserProfile'

@@ -3,9 +3,9 @@ from django.contrib.auth.models import User
 
 class Company(models.Model):
     name = models.CharField(max_length=40)
-    isActive = models.BooleanField()
+    isActive = models.BooleanField(True)
     email = models.EmailField(blank=True)
-    administrator = models.ForeignKey(User)
+    administrator = models.ForeignKey(User, blank=True)
     # subscribers = models.ManyToManyField(User, blank=True) # TODO
     # contracts # TODO
     def __unicode__(self):
@@ -22,9 +22,12 @@ class Branch(models.Model):
         return u'%s @ %s' % (self.branchName, self.company)
 
 class UserProfile(models.Model):
-    user = models.OneToOneField(User)
+    user = models.OneToOneField(User, unique=True)
     workplace = models.ForeignKey(Branch)
     position = models.CharField(max_length=20, blank=True)
     phone = models.CharField(max_length=20, blank=True)
     mobilePhone = models.CharField(max_length=20, blank=True)
     # language # TODO
+    def __unicode__(self):
+        return u'%s' % (self.user)
+

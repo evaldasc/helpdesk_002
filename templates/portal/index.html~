@@ -1,0 +1,26 @@
+{% extends "portal/portal.html" %}
+{% comment %}
+
+Main page of the portal.
+
+{% endcomment %}
+
+{% block title %}
+Portal
+{% endblock %}
+
+{% block content %}
+    <section>
+        <h2>Welcome, {{ user }}</h2>
+        <p>This is the main page of the web portal?</p>
+    </section>
+    
+
+    <p>{{ company }}: <a href = "/blog/{{company.id}}">{{ company.name }}</a></p> 
+
+    {% for c in companies %}
+    <p>{{ c }}: <a href = "/blog/{{c.id}}">{{ c.name }}</a></p> 
+    {% endfor %}
+
+    
+{% endblock %}
