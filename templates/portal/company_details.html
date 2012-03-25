@@ -5,16 +5,16 @@ Company details
 {% endblock %}
 
 {% block content %}
-    <h2>{{ company.name }} details:</h2>
-    Name: {{ company.name }}<br />
-    Active: {{ company.isActive }}<br />
-    Email: {{ company.email }}<br />
-    Administrtor: {{ company.administrator }}<br />
-    {% for branch in branches %}
-        <h3>{{ branch.branchName }}</h3><br />
-        Adress: {{ branch.adress }}<br />
-        Phone: {{ branch.phone }}<br />
-        IP: {{ branch.IP }}<br />
-    {% endfor %}
-    
+    <h2>{{ branch.name }} details:</h2>
+    Name: {{ branch.name }}<br />
+    Active: {{ branch.is_active }}<br />
+    Email: {{ branch.email }}<br />
+    Adress: {{ branch.adress }}<br />
+    Phone: {{ branch.phone }}<br />
+    IP: {{ branch.external_IP }}<br />
+    <br />
+    All subbranches:<br />
+    {% for subbranch in subbranches %}
+        <a href = "/imones/details/{{subbranch.id}}">{{subbranch.name}}</a><br />
+    {% endfor %}    
 {% endblock %}

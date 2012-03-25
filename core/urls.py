@@ -1,10 +1,8 @@
 from django.conf.urls.defaults import patterns, include, url
-from imones.views import *
+from core.views import *
 
 urlpatterns = patterns('',
     (r'^$', companies),     
     (r'^users/$', users),
-    (r'^details/(?P<id>\d+)$', companies),
+    (r'^details/(?P<id>\d+)$', company_detail),
 ) 
-
-

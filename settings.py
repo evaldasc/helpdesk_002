@@ -120,7 +120,7 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
     'django.contrib.admindocs',
-    'imones',
+    'core',
 )
 
 # A sample logging configuration. The only tangible logging
@@ -147,4 +147,4 @@ LOGGING = {
 }
 
 LOGIN_URL = '/login/'
-AUTH_PROFILE_MODULE = 'imones.UserProfile'
+AUTH_PROFILE_MODULE = 'core.UserProfile'

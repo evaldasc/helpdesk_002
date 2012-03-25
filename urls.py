@@ -19,7 +19,7 @@ urlpatterns = patterns('',
     (r'^logout/$', logout_page),
 
     # Web portal.
-    (r'^imones/', include('helpdesk_002.imones.urls')),
+    (r'^imones/', include('helpdesk_002.core.urls')),
 
     # Serve static content.
     #(r'^static/(?P<path>.*)$', 'django.views.static.serve',
