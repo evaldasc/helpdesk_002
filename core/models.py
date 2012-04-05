@@ -40,7 +40,7 @@ class UserProfile(models.Model):
     email = models.EmailField(blank=True)
     # language # TODO
     # permissions / Admins may change permissions of other users
-    #                                                   to lover level ones
+    #                                                   to lower level ones
     def __unicode__(self):
         return u'%s' % (self.user)
 

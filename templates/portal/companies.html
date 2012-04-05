@@ -1,16 +1,12 @@
 {% extends "portal/portal.html" %}
 
-{% block title %}
-Companies
-{% endblock %}
+{% block title %}Companies{% endblock %}
 
 {% block content %}
-    <h2>List of companies</h2>
-    
-    <hr />
+    <h2>List of companies</h2> 
     <ul>
         {% for c in companies %}
         <li><a href = "/imones/details/{{c.id}}">{{ c.name }}</a></li> 
         {% endfor %}
-    </ul>  
+    </ul>
 {% endblock %}

@@ -5,16 +5,38 @@ Company details
 {% endblock %}
 
 {% block content %}
-    <h2>{{ branch.name }} details:</h2>
-    Name: {{ branch.name }}<br />
-    Active: {{ branch.is_active }}<br />
-    Email: {{ branch.email }}<br />
-    Adress: {{ branch.adress }}<br />
-    Phone: {{ branch.phone }}<br />
-    IP: {{ branch.external_IP }}<br />
+    <table>
+        <caption>{{ branch.name }} details</caption>
+        <tr>
+	        <td>Name:</th>
+	        <td>{{ branch.name }}</th>
+        </tr>
+        <tr>
+	        <td>Active:</th>
+	        <td>{{ branch.is_active }}</th>
+        </tr>
+        <tr>
+	        <td>Email:</th>
+	        <td>{{ branch.email }}</th>
+        </tr>
+        <tr>
+	        <td>Adress:</th>
+	        <td>{{ branch.adress }}</th>
+        </tr>
+        <tr>
+	        <td>Phone:</th>
+	        <td>{{ branch.phone }}</th>
+        </tr>
+        <tr>
+	        <td>IP:</th>
+	        <td>{{ branch.external_IP }}</th>
+        </tr>
+    </table>
+    
     <br />
     All subbranches:<br />
     {% for subbranch in subbranches %}
         <a href = "/imones/details/{{subbranch.id}}">{{subbranch.name}}</a><br />
-    {% endfor %}    
+    {% endfor %}  
+    
 {% endblock %}

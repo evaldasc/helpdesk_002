@@ -1,0 +1,105 @@
+/* Makeshift CSS Reset */  
+{  
+    margin: 0;  
+    padding: 0;  
+}  
+
+a {
+   text-decoration: none; 
+}
+
+hr {
+    display: none;
+}
+
+header, footer, aside, nav, article, section {  
+    display: block;  
+}  
+
+header {
+    width: 100%;
+    height: 65px;
+    background-color: orange;
+    text-align: center;
+    border-bottom: 1px solid #eee;
+}
+
+header h1{
+    display: block;
+    float: left;
+    width: 105px;
+    height: 100%;
+}
+
+nav li {
+    float: left;
+    display: block;
+    overflow: hidden;
+    margin-left: 9px;
+    text-align: center;
+}
+
+header nav li {
+    width: 105px;
+    height: 65px;
+    line-height: 65px;
+}
+
+nav.sub {
+    height: 25px;
+    line-height: 25px;
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+}
+
+nav.sub li {
+    width: 65px;
+}
+
+nav.loc {
+    font-size: 10px; 
+    height: 15px;
+    line-height: 15px;
+    border-bottom: 1px solid #eee;
+}
+
+nav.loc li:before {
+    content:">>";
+    margin-right: 9px;
+}
+
+nav.side {
+    padding-top: 25px;
+    width: 105px;
+    line-height: 25px;
+    bottom: 0;
+    float: left;
+    min-height:445px;
+    border-right: 1px solid #eee;
+}
+
+nav.side li {
+    margin: 0;
+    width: 105px;
+    height: 25px;
+}
+
+section {
+    float: left;
+    background-color: #ffe;
+    min-width:720px;
+    padding: 25px;
+}
+
+caption {
+    font-size: 1.2em;
+    line-height: 2em;
+}
+
+footer {
+    float: right;
+    width: 100%;
+    font-size: 10pt;
+    height: 1.2em;
+    border-top: 1px solid #eee;
+}

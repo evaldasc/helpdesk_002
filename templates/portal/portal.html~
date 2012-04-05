@@ -1,30 +1,60 @@
 {% extends "base.html" %}
-{% comment %}
 
-This is the main template for all portal pages.
-
-{% endcomment %}
+{% comment %} Main template {% endcomment %}
 
 {% block head %}
     <title>HelpDesk | {% block title %}{% endblock %}</title>
+    <link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/3.4.1/build/cssreset/cssreset-min.css">
+    <link href="/static/style.css" rel="stylesheet" type="text/css">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
 {% endblock %}
 
 {% block body %}
     <header>
-        <h1>HelpDesk | {{ user }}</h1>
+        <h1>HelpDesk</h1>
+        <nav>
+            <ul>
+                <li><a href="/">home</a></li>
+                <li><a href="/imones/">companies</a></li>
+                <li><a href="/logout/">logout</a></li>
+            </ul>
+        </nav>
     </header>
-
-    <section>
+    
+    <nav class="sub">
         <ul>
             <li><a href="/">home</a></li>
-            <li><a href="/logout/">logout</a></li>
+            <li><a href="/">test</a></li>
+            <li><a href="/">test2</a></li>
         </ul>
-    </section>
-
+    </nav>
+    
+    <nav class="loc">
+        <ul>
+            <li><a href="/">home</a></li>
+            <li><a href="/">test</a></li>
+            <li><a href="/">test2</a></li>
+        </ul>
+    </nav>
+    
+    <nav class="side">
+        <ul>
+            <li><a href="/">home</a></li>
+            <li><a href="/">test</a></li>
+            <li><a href="/">test2</a></li>
+        </ul>
+    </nav>
+    
+    <hr />
+    <section>
     {% block content %}
     {% endblock %}
-
+    </section>
+    <hr />
     <footer>
-        <span>&copy; 2012</span>
+        <span>&copy; 2012</span> 
+        <span>HelpDesk | {{ user }}</span>
     </footer>
 {% endblock %}
