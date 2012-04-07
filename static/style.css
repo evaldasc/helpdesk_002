@@ -85,10 +85,10 @@ nav.side li {
 }
 
 section {
-    float: left;
     background-color: #ffe;
     min-width:720px;
     padding: 25px;
+    margin-left: 105px;
 }
 
 caption {

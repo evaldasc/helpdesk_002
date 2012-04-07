@@ -6,11 +6,13 @@ Replace this with more appropriate tests for your application.
 """
 
 from django.test import TestCase
+from core.models import Branch
 
-
-class SimpleTest(TestCase):
-    def test_basic_addition(self):
-        """
-        Tests that 1 + 1 always equals 2.
-        """
-        self.assertEqual(1 + 1, 2)
+class SimpleTest(TestCase):     
+    def test_get_fields(self):    
+        branch = Branch(name = "test",
+                        adress = "test address",
+                        phone = "000",
+                        email = "test@email.com")                          
+        fields = branch.get_fields()
+        self.assertTrue(fields)

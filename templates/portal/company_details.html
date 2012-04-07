@@ -31,6 +31,12 @@ Company details
 	        <td>IP:</th>
 	        <td>{{ branch.external_IP }}</th>
         </tr>
+        {% for field, value in branch.get_fields %}
+        <tr>
+	        <td>{{ field }}:</th>
+	        <td>{{ value }}</th>
+        </tr>
+        {% endfor %}  
     </table>
     
     <br />
@@ -38,5 +44,12 @@ Company details
     {% for subbranch in subbranches %}
         <a href = "/imones/details/{{subbranch.id}}">{{subbranch.name}}</a><br />
     {% endfor %}  
+    <br />
+    <form action="{% url core.views.company_detail branch.id %}" method="POST">
+        {% csrf_token %}
+        {{ form.message.errors }}
+        {{ form }}
+        <p><input type="submit" value="Submit"></p>
+    </form>
     
 {% endblock %}
