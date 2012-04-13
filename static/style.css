@@ -1,5 +1,4 @@
-/* Makeshift CSS Reset */  
-{  
+* {  
     margin: 0;  
     padding: 0;  
 }  
@@ -53,7 +52,7 @@ nav.sub {
 }
 
 nav.sub li {
-    width: 65px;
+    width: 105px;
 }
 
 nav.loc {
@@ -85,7 +84,6 @@ nav.side li {
 }
 
 section {
-    background-color: #ffe;
     min-width:720px;
     padding: 25px;
     margin-left: 105px;
@@ -103,3 +101,48 @@ footer {
     height: 1.2em;
     border-top: 1px solid #eee;
 }
+
+/* HTML5 Form styles */
+[required] {
+    border-color: #88a;
+    -webkit-box-shadow: 0 0 3px rgba(0, 0, 255, .5);
+}
+
+:invalid {
+    border-color: #e88;
+    -webkit-box-shadow: 0 0 5px rgba(255, 0, 0, .8);
+}
+
+/* CSS selector for table 
+ * http://slides.html5rocks.com/#css-selectors */
+.row:nth-child(even) {
+    background: #dde;
+}
+.row:nth-child(odd) {
+    background: white;
+}
+
+table {
+    border-collapse: collapse;
+    padding: 20px;
+    text-align: left;
+    width: 100%;    
+}
+
+thead {
+    font-weight: bold;
+    border-bottom: 2px solid #eee;
+}
+
+tr.odd {
+    background-color: #fbfbfb;
+}
+
+tr:hover {
+    background-color: #eee;
+}
+
+td {
+    padding-top: 9px;
+}
+

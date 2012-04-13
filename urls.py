@@ -12,14 +12,12 @@ urlpatterns = patterns('',
     # Uncomment the next line to enable the admin:
     url(r'^admin/', include(admin.site.urls)),
     
-    (r'^login/$', 'django.contrib.auth.views.login'),
-
     # Login / logout.
-    (r'^$', 'django.contrib.auth.views.login'),
+    (r'^login/$', 'django.contrib.auth.views.login'),
     (r'^logout/$', logout_page),
 
     # Web portal.
-    (r'^imones/', include('helpdesk_002.core.urls')),
+    (r'^', include('helpdesk_002.core.urls')),
 
     # Serve static content.
     #(r'^static/(?P<path>.*)$', 'django.views.static.serve',

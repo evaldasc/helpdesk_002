@@ -6,7 +6,9 @@
     <h2>List of companies</h2> 
     <ul>
         {% for c in companies %}
-        <li><a href = "/imones/details/{{c.id}}">{{ c.name }}</a></li> 
+        <li><a href = "{% url core.views.company_detail c.id %}">{{ c.name }}</a></li> 
+        {% empty %}
+        <li> There is no companies </li>
         {% endfor %}
     </ul>
 {% endblock %}

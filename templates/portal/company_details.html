@@ -7,49 +7,35 @@ Company details
 {% block content %}
     <table>
         <caption>{{ branch.name }} details</caption>
-        <tr>
-	        <td>Name:</th>
-	        <td>{{ branch.name }}</th>
-        </tr>
-        <tr>
-	        <td>Active:</th>
-	        <td>{{ branch.is_active }}</th>
-        </tr>
-        <tr>
-	        <td>Email:</th>
-	        <td>{{ branch.email }}</th>
-        </tr>
-        <tr>
-	        <td>Adress:</th>
-	        <td>{{ branch.adress }}</th>
-        </tr>
-        <tr>
-	        <td>Phone:</th>
-	        <td>{{ branch.phone }}</th>
-        </tr>
-        <tr>
-	        <td>IP:</th>
-	        <td>{{ branch.external_IP }}</th>
-        </tr>
         {% for field, value in branch.get_fields %}
         <tr>
-	        <td>{{ field }}:</th>
-	        <td>{{ value }}</th>
+	        <td>{{ field }}:</td>
+	        <td>{{ value }}</td>
         </tr>
         {% endfor %}  
     </table>
     
     <br />
     All subbranches:<br />
+    <ul>
     {% for subbranch in subbranches %}
-        <a href = "/imones/details/{{subbranch.id}}">{{subbranch.name}}</a><br />
+        <li><a href = "{% url core.views.company_detail subbranch.id %}">{{subbranch.name}}</a></li>
+        {% empty %}
+        <li> There is no subbranches </li>
     {% endfor %}  
+    </ul>    
     <br />
     <form action="{% url core.views.company_detail branch.id %}" method="POST">
         {% csrf_token %}
         {{ form.message.errors }}
         {{ form }}
         <p><input type="submit" value="Submit"></p>
+        
+        <input type="text" required placeholder="test"/>
+        <input type="tel"  placeholder="(555) 555-5555"
+         pattern="^\(?\d{3}\)?[-\s]\d{3}[-\s]\d{4}.*?$" />      
     </form>
+    
+    <a href = "{% url core.views.company_users branch.id %}">{{branch.name}} users</a><br />
     
 {% endblock %}

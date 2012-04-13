@@ -1,0 +1,30 @@
+{% extends "portal/portal.html" %}
+
+{% block title %}Users{% endblock %}
+
+{% block content %}   
+    <table>
+        <caption>List of users in {{ branch }}</caption>
+        <thead>
+        <tr>
+	        <td>User</td>
+	        <td>Email</td>
+	        <td>Phone</td>
+	        <td>Mobile phone</td>
+        </tr>
+        </thead>
+        <tbody>
+        {% for user_profile in user_list %}
+        <tr class="{% cycle 'odd' 'even'%}" >
+	        <td><a href = "{% url core.views.user_detail user_profile.id %}">
+	                                                {{ user_profile }}</a></td>
+	        <td>{{ user_profile.user.email }}</td>
+	        <td>{{ user_profile.phone }}</td>
+	        <td>{{ user_profile.mobile_phone }}</td>
+        </tr>
+        {% empty %}
+        <td>There are no users</td>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

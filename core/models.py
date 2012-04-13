@@ -17,7 +17,6 @@ class Branch(models.Model):
     external_IP = models.IPAddressField(blank=True)
     def __unicode__(self):
         return u'%s' % (self.name)
-        #return u'%s @ %s' % (self.name, self.company)
     def get_fields(self):
 	    """make a list of field/values."""
 	    full_list = [(field.verbose_name, field.value_to_string(self)) for field\
@@ -29,15 +28,25 @@ class BranchForm(ModelForm):
         model = Branch
 
 class UserProfile(models.Model):
+    """Extends Django user with application specific parameters
+    """
     user = models.OneToOneField(User, unique=True)
     workplace = models.ForeignKey(Branch)
     position = models.CharField(max_length=20, blank=True)
     phone = models.CharField(max_length=20, blank=True)
     mobile_phone = models.CharField(max_length=20, blank=True)
-    email = models.EmailField(blank=True)
+    # email = models.EmailField(blank=True) # already built-in
     # language # TODO
     # permissions / Admins may change permissions of other users
     #                                                   to lower level ones
     def __unicode__(self):
-        return u'%s' % (self.user)
+        """Returns string representation of UserProfile (name and last name)
+        """
+        user = self.user.first_name or self.user.username.title() or "<?>"
+        user += " " + ( self.user.last_name or "<?>" )
+        return user
+        
+class UserProfileForm(ModelForm):
+    class Meta:
+        model = UserProfile
 

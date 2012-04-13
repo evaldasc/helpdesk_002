@@ -1,11 +1,15 @@
 from django.shortcuts import render_to_response
-from core.models import Branch, BranchForm
+from django.shortcuts import render
+from core.models import Branch, BranchForm, UserProfile
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
-debug = 0
+import logging
+from django.core.context_processors import csrf
+
+logger = logging.getLogger(__name__)
 
 def get_user_info(user):
-    """Return nice representation of user and a company it works in
+    """Return nice representation of active user and a company it works in
     """
     userinfo = [user.username, " (", user.get_full_name()]
     
@@ -20,32 +24,22 @@ def get_user_info(user):
 @login_required
 def meniu(request):
     context = {}
-    context["user"] = get_user_info(request.user)
-#   company = Company.objects.get(pk="1")
-#   return render_to_response('basic.html', {'company': company})
-    return render_to_response('portal/index.html', context)
-
-@login_required
-def users(request):
-    context = {}
-    context["user"] = get_user_info(request.user)
-#    company = Company.objects.get(pk="1")
-#    return render_to_response('basic.html', {'company': company})  
-    return render_to_response('portal/index.html', context)
-    
+    context["active_user"] = get_user_info(request.user)
+    return render(request, 'portal/index.html', context)
+   
 @login_required
 def companies(request):
     context = {}
-    context["user"] = get_user_info(request.user)
+    context["active_user"] = get_user_info(request.user)
     context["companies"] = Branch.objects.filter(super_branch__isnull=True)
-    return render_to_response('portal/companies.html', context)
+    return render(request, 'portal/companies.html', context)
     
 @login_required
 def company_detail(request, id):
-    if debug: print "ID = " + str(id)  # FOR DEBUGING PURPOSES ONLY
+    logger.debug("Company ID = " + str(id)) # DEBUG
     context = {}
     branch = Branch.objects.get(pk=id)
-    context["user"] = get_user_info(request.user)
+    context["active_user"] = get_user_info(request.user)
     context["branch"] = branch
     context["subbranches"] = Branch.objects.filter(super_branch=id)
     #--
@@ -56,4 +50,27 @@ def company_detail(request, id):
 
     context["form"] = form
     #--
-    return render_to_response('portal/company_details.html', context)
+    return render(request, 'portal/company_details.html', context)
+    
+@login_required
+def company_users(request, id):
+    logger.debug("Company ID = " + str(id)) # DEBUG
+    context = {}
+    context["active_user"] = get_user_info(request.user)
+    context["user_list"] = UserProfile.objects.filter(workplace=id)
+    try:
+        context["branch"] = Branch.objects.get(pk=id)
+    except:
+        logger.info("No such company by ID = " + str(id))  # DEBUG
+        context["branch"] = "<?>"  
+    if not context["user_list"]:                            # DEBUG
+        logger.info("No users in company ID = " + str(id))  # DEBUG
+        
+    return render(request, 'portal/users.html', context)
+    
+@login_required
+def user_detail(request, id):
+    context = {}
+    context["user"] = get_user_info(request.user)
+
+    return render(request, 'portal/index.html', context)

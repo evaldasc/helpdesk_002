@@ -17,7 +17,7 @@
         <nav>
             <ul>
                 <li><a href="/">home</a></li>
-                <li><a href="/imones/">companies</a></li>
+                <li><a href="{% url core.views.companies %}">companies</a></li>
                 <li><a href="/logout/">logout</a></li>
             </ul>
         </nav>
@@ -26,7 +26,7 @@
     <nav class="sub">
         <ul>
             <li><a href="/">home</a></li>
-            <li><a href="/">test</a></li>
+            <li><a href="{% url core.views.companies %}">companies</a></li>
             <li><a href="/">test2</a></li>
         </ul>
     </nav>
@@ -48,14 +48,16 @@
     </nav>
     
     <hr />
+    
     <section>
     {% block content %}
     {% endblock %}
     </section>
+
     <hr />
     
     <footer>
         <span>&copy; 2012</span> 
-        <span>HelpDesk | {{ user }}</span>
+        <span>HelpDesk | {{ active_user }}</span>
     </footer>
 {% endblock %}
