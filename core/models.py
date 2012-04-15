@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.forms import ModelForm
+from django import forms
 
 class Branch(models.Model):
     """Part of the company refering to other (super)branches. If there is 
@@ -18,7 +19,7 @@ class Branch(models.Model):
     def __unicode__(self):
         return u'%s' % (self.name)
     def get_fields(self):
-	    """make a list of field/values."""
+	    """make a list of field/values.NEREIKALINGAS"""
 	    full_list = [(field.verbose_name, field.value_to_string(self)) for field\
                                                         in self._meta.fields]
 	    return full_list
@@ -26,6 +27,8 @@ class Branch(models.Model):
 class BranchForm(ModelForm):
     class Meta:
         model = Branch
+        exclude = ('super_branch',)
+
 
 class UserProfile(models.Model):
     """Extends Django user with application specific parameters

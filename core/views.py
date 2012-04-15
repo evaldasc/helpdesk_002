@@ -1,4 +1,4 @@
-from django.shortcuts import render_to_response
+#from django.shortcuts import render_to_response
 from django.shortcuts import render
 from core.models import Branch, BranchForm, UserProfile
 from django.contrib.auth import authenticate, login
@@ -11,13 +11,11 @@ logger = logging.getLogger(__name__)
 def get_user_info(user):
     """Return nice representation of active user and a company it works in
     """
-    userinfo = [user.username, " (", user.get_full_name()]
-    
+    userinfo = [user.username, " (", user.get_full_name()] 
     try:
         userinfo.extend([", ", user.get_profile().workplace.name, ")"])
     except:
         userinfo.extend([", ", "no company", ")"])
-    
     userinfo = ''.join(userinfo)    
     return userinfo
 
@@ -36,25 +34,28 @@ def companies(request):
     
 @login_required
 def company_detail(request, id):
-    logger.debug("Company ID = " + str(id)) # DEBUG
+    """ Renders company details page with form to change the data
+    """
+    logger.debug("Company accessed - ID = " + str(id)) # DEBUG
     context = {}
     branch = Branch.objects.get(pk=id)
     context["active_user"] = get_user_info(request.user)
     context["branch"] = branch
     context["subbranches"] = Branch.objects.filter(super_branch=id)
-    #--
-    form = BranchForm(request.POST or None, instance=id and branch)
-    
+    form = BranchForm(request.POST or None, instance=id and branch) 
     if request.method == 'POST' and form.is_valid():
-        form.save()      
-
+        form.save()
+        logger.debug("Form saved") # DEBUG
+    elif not form.is_valid():
+        logger.debug("Form is not valid!") # DEBUG
     context["form"] = form
-    #--
     return render(request, 'portal/company_details.html', context)
     
 @login_required
 def company_users(request, id):
-    logger.debug("Company ID = " + str(id)) # DEBUG
+    """ Renders a list of users in the company with specific id
+    """
+    logger.debug("Company users accessed - ID = " + str(id)) # DEBUG
     context = {}
     context["active_user"] = get_user_info(request.user)
     context["user_list"] = UserProfile.objects.filter(workplace=id)
@@ -72,5 +73,4 @@ def company_users(request, id):
 def user_detail(request, id):
     context = {}
     context["user"] = get_user_info(request.user)
-
     return render(request, 'portal/index.html', context)

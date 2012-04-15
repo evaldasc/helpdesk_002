@@ -5,17 +5,34 @@ Company details
 {% endblock %}
 
 {% block content %}
-    <table>
-        <caption>{{ branch.name }} details</caption>
-        {% for field, value in branch.get_fields %}
-        <tr>
-	        <td>{{ field }}:</td>
-	        <td>{{ value }}</td>
+    <header><h2>{{ branch.name }} details</h2></header>
+       
+    {# Company deails / form #}
+    <form action="{% url core.views.company_detail branch.id %}" method="POST">
+        {% csrf_token %}
+        {{ form.message.errors }}
+        <table>
+        <tr><th>ID:</th><td>{{ branch.id }}</td></tr>
+        <tr><th>Super branch:</th>
+        {% if branch.super_branch %}
+            <td>
+            <a href = "{% url core.views.company_detail branch.super_branch.id %}">
+            {{ branch.super_branch }}</a>
+            </td>
+        {% else %}
+             <td>None</td>
+        {% endif %}
         </tr>
-        {% endfor %}  
-    </table>
+        {{ form }}
+        </table>
+        <p><input type="submit" value="Submit"></p>    
+    </form>
     
-    <br />
+        <input type="text" required placeholder="test"/>
+        <input type="tel"  placeholder="(555) 555-5555"
+         pattern="^\(?\d{3}\)?[-\s]\d{3}[-\s]\d{4}.*?$" /><br />
+    
+    {# List of subbrances #}
     All subbranches:<br />
     <ul>
     {% for subbranch in subbranches %}
@@ -23,19 +40,9 @@ Company details
         {% empty %}
         <li> There is no subbranches </li>
     {% endfor %}  
-    </ul>    
-    <br />
-    <form action="{% url core.views.company_detail branch.id %}" method="POST">
-        {% csrf_token %}
-        {{ form.message.errors }}
-        {{ form }}
-        <p><input type="submit" value="Submit"></p>
-        
-        <input type="text" required placeholder="test"/>
-        <input type="tel"  placeholder="(555) 555-5555"
-         pattern="^\(?\d{3}\)?[-\s]\d{3}[-\s]\d{4}.*?$" />      
-    </form>
+    </ul><br />
     
+    {# Link to list of users #}
     <a href = "{% url core.views.company_users branch.id %}">{{branch.name}} users</a><br />
     
 {% endblock %}
