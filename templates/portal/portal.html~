@@ -50,10 +50,8 @@
     <hr />
     
     <section>
-       
     {% block content %}
     {% endblock %}
-        <div style="background-color: blue; clear: both;display: block;height: 5px; width: 100%;"></div>
     </section>
 
     <hr />

@@ -1,10 +1,13 @@
-* {  
-    margin: 0;  
-    padding: 0;  
+html {  
+    font-family: 'PT Sans', sans-serif;
 }  
 
 a {
    text-decoration: none; 
+}
+
+h2 {
+     font-weight: bold;
 }
 
 hr {
@@ -15,15 +18,14 @@ header, footer, aside, nav, article, section {
     display: block;  
 }  
 
-header {
-    width: 100%;
+body > header {
     height: 65px;
     background-color: orange;
     text-align: center;
     border-bottom: 1px solid #eee;
 }
 
-header h1{
+header > h1{
     display: block;
     float: left;
     width: 105px;
@@ -73,7 +75,7 @@ nav.side {
     line-height: 25px;
     bottom: 0;
     float: left;
-    min-height:445px;
+/*    min-height:445px;*/
     border-right: 1px solid #eee;
 }
 
@@ -89,14 +91,19 @@ section {
     margin-left: 105px;
 }
 
+section > header {
+    font-family: 'PT Sans Caption', sans-serif;
+    font-weight: bold;
+}
+
 caption {
     font-size: 1.2em;
     line-height: 2em;
 }
 
 footer {
-    float: right;
-    width: 100%;
+/*    float: right;
+    width: 100%;*/
     font-size: 10pt;
     height: 1.2em;
     border-top: 1px solid #eee;

@@ -3,7 +3,9 @@
 {% block title %}Companies{% endblock %}
 
 {% block content %}
+    <header>
     <h2>List of companies</h2> 
+    </header>
     <ul>
         {% for c in companies %}
         <li><a href = "{% url core.views.company_detail c.id %}">{{ c.name }}</a></li> 
